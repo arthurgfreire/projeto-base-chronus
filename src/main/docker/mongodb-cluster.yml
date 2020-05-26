@@ -1,0 +1,16 @@
+version: '2'
+services:
+  projetobasechronus-mongodb:
+    image: mongo:4.2.6
+    ports:
+      - '27017:27017'
+    command: mongos --configdb csvr/projetobasechronus-mongodb-config --bind_ip 0.0.0.0
+  projetobasechronus-mongodb-node:
+    build:
+      context: .
+      dockerfile: mongodb/MongoDB.Dockerfile
+    command: mongod --shardsvr --replSet rs1
+  projetobasechronus-mongodb-config:
+    image: mongo:4.2.6
+    container_name: projetobasechronus-mongodb-config
+    command: mongod --configsvr --dbpath /data/db --replSet csvr
