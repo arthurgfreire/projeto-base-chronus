@@ -18,8 +18,8 @@
       "otherEntityRelationshipName": "UnidadeAtendimento",
       "relationshipValidateRules": "required",
       "relationshipName": "endereco",
-      "otherEntityField": "id"
-	  "ownerSide": true
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",

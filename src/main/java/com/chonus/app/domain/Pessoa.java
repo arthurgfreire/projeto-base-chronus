@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import com.chonus.app.domain.enumeration.Genero;
 
@@ -80,20 +81,12 @@ public class Pessoa implements Serializable {
     @Field("estado_civil")
     private EstadoCivil estadoCivil;
 
-    @DBRef
-    @Field("pais")
-    @JsonIgnoreProperties(value = "Pessoas", allowSetters = true)
-    private Pais pais;
+    @Field("data_expiracao")
+    private LocalDate dataExpiracao;
 
     @DBRef
-    @Field("uf")
-    @JsonIgnoreProperties(value = "Pessoas", allowSetters = true)
-    private Uf uf;
-
-    @DBRef
-    @Field("cidade")
-    @JsonIgnoreProperties(value = "Pessoas", allowSetters = true)
-    private Cidade cidade;
+    @Field("endereco")
+    private Endereco endereco;
 
     @DBRef
     @Field("raca")
@@ -104,6 +97,11 @@ public class Pessoa implements Serializable {
     @Field("tipoSanguineo")
     @JsonIgnoreProperties(value = "Pessoas", allowSetters = true)
     private TipoSanguineo tipoSanguineo;
+
+    @DBRef
+    @Field("classificacaoUsuario")
+    @JsonIgnoreProperties(value = "Pessoas", allowSetters = true)
+    private ClassificacaoUsuario classificacaoUsuario;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public String getId() {
@@ -242,28 +240,20 @@ public class Pessoa implements Serializable {
         this.estadoCivil = estadoCivil;
     }
 
-    public Pais getPais() {
-        return pais;
+    public LocalDate getDataExpiracao() {
+        return dataExpiracao;
     }
 
-    public void setPais(Pais Pais) {
-        this.pais = Pais;
+    public void setDataExpiracao(LocalDate dataExpiracao) {
+        this.dataExpiracao = dataExpiracao;
     }
 
-    public Uf getUf() {
-        return uf;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setUf(Uf Uf) {
-        this.uf = Uf;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade Cidade) {
-        this.cidade = Cidade;
+    public void setEndereco(Endereco Endereco) {
+        this.endereco = Endereco;
     }
 
     public Raca getRaca() {
@@ -280,6 +270,14 @@ public class Pessoa implements Serializable {
 
     public void setTipoSanguineo(TipoSanguineo TipoSanguineo) {
         this.tipoSanguineo = TipoSanguineo;
+    }
+
+    public ClassificacaoUsuario getClassificacaoUsuario() {
+        return classificacaoUsuario;
+    }
+
+    public void setClassificacaoUsuario(ClassificacaoUsuario ClassificacaoUsuario) {
+        this.classificacaoUsuario = ClassificacaoUsuario;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -320,6 +318,7 @@ public class Pessoa implements Serializable {
             ", quantFilhos=" + getQuantFilhos() +
             ", genero='" + getGenero() + "'" +
             ", estadoCivil='" + getEstadoCivil() + "'" +
+            ", dataExpiracao='" + getDataExpiracao() + "'" +
             "}";
     }
 }

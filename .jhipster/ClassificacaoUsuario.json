@@ -5,7 +5,7 @@
       "fieldName": "descricao",
       "fieldType": "String"
     },
-	{
+    {
       "fieldName": "cor",
       "fieldType": "String"
     }

@@ -16,8 +16,8 @@
     },
     {
       "fieldName": "cep",
-      "fieldType": "String"
-	  "fieldValidateRulesPattern": "(\\d{5}\\-\\d{3})"
+      "fieldType": "String",
+      "fieldValidateRulesPattern": "(\\d{5}\\-\\d{3})"
     }
   ],
   "relationships": [

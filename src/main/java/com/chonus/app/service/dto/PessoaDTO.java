@@ -1,5 +1,6 @@
 package com.chonus.app.service.dto;
 
+import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import com.chonus.app.domain.enumeration.Genero;
@@ -51,16 +52,16 @@ public class PessoaDTO implements Serializable {
     @NotNull
     private EstadoCivil estadoCivil;
 
+    private LocalDate dataExpiracao;
 
-    private String paisId;
 
-    private String ufId;
-
-    private String cidadeId;
+    private String enderecoId;
 
     private String racaId;
 
     private String tipoSanguineoId;
+
+    private String classificacaoUsuarioId;
     
     public String getId() {
         return id;
@@ -198,28 +199,20 @@ public class PessoaDTO implements Serializable {
         this.estadoCivil = estadoCivil;
     }
 
-    public String getPaisId() {
-        return paisId;
+    public LocalDate getDataExpiracao() {
+        return dataExpiracao;
     }
 
-    public void setPaisId(String PaisId) {
-        this.paisId = PaisId;
+    public void setDataExpiracao(LocalDate dataExpiracao) {
+        this.dataExpiracao = dataExpiracao;
     }
 
-    public String getUfId() {
-        return ufId;
+    public String getEnderecoId() {
+        return enderecoId;
     }
 
-    public void setUfId(String UfId) {
-        this.ufId = UfId;
-    }
-
-    public String getCidadeId() {
-        return cidadeId;
-    }
-
-    public void setCidadeId(String CidadeId) {
-        this.cidadeId = CidadeId;
+    public void setEnderecoId(String EnderecoId) {
+        this.enderecoId = EnderecoId;
     }
 
     public String getRacaId() {
@@ -236,6 +229,14 @@ public class PessoaDTO implements Serializable {
 
     public void setTipoSanguineoId(String TipoSanguineoId) {
         this.tipoSanguineoId = TipoSanguineoId;
+    }
+
+    public String getClassificacaoUsuarioId() {
+        return classificacaoUsuarioId;
+    }
+
+    public void setClassificacaoUsuarioId(String ClassificacaoUsuarioId) {
+        this.classificacaoUsuarioId = ClassificacaoUsuarioId;
     }
 
     @Override
@@ -275,11 +276,11 @@ public class PessoaDTO implements Serializable {
             ", quantFilhos=" + getQuantFilhos() +
             ", genero='" + getGenero() + "'" +
             ", estadoCivil='" + getEstadoCivil() + "'" +
-            ", paisId='" + getPaisId() + "'" +
-            ", ufId='" + getUfId() + "'" +
-            ", cidadeId='" + getCidadeId() + "'" +
+            ", dataExpiracao='" + getDataExpiracao() + "'" +
+            ", enderecoId='" + getEnderecoId() + "'" +
             ", racaId='" + getRacaId() + "'" +
             ", tipoSanguineoId='" + getTipoSanguineoId() + "'" +
+            ", classificacaoUsuarioId='" + getClassificacaoUsuarioId() + "'" +
             "}";
     }
 }

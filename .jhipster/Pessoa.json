@@ -73,7 +73,7 @@
       "fieldValues": "CASADO,SOLTEIRO,OUTROS",
       "fieldValidateRules": ["required"]
     },
-	{
+    {
       "fieldName": "dataExpiracao",
       "fieldType": "LocalDate"
     }
@@ -85,8 +85,8 @@
       "otherEntityRelationshipName": "Pessoa",
       "relationshipValidateRules": "required",
       "relationshipName": "endereco",
-      "otherEntityField": "id"
-	  "ownerSide": true
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",

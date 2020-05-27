@@ -7,7 +7,7 @@
       "fieldValues": "GOVERNO,ENTIDADE_MEDICA,EMPRESA_NAO_MEDICA",
       "fieldValidateRules": ["required"]
     },
-	{
+    {
       "fieldName": "tipoUnidade",
       "fieldType": "TipoUnidade",
       "fieldValues": "PUBLICA,PRIVADA",
@@ -34,19 +34,19 @@
       "fieldName": "inscricaoMunicipal",
       "fieldType": "String"
     },
-	{
+    {
       "fieldName": "telefone",
       "fieldType": "String",
       "fieldValidateRules": ["pattern", "required"],
       "fieldValidateRulesPattern": "(\\(?\\d{3}\\)?\\s)?(\\d{4,5}\\-\\d{4})"
     },
-	{
+    {
       "fieldName": "email",
       "fieldType": "String",
       "fieldValidateRules": ["unique"],
       "fieldValidateRulesPattern": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
     },
-	{
+    {
       "fieldName": "tipoLicneca",
       "fieldType": "TipoLicneca",
       "fieldValues": "GOV,PRIVADA,SCANNER",
@@ -64,8 +64,8 @@
       "otherEntityRelationshipName": "Entidade",
       "relationshipValidateRules": "required",
       "relationshipName": "endereco",
-      "otherEntityField": "id"
-	  "ownerSide": true
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipName": "unidadeAtendimento",

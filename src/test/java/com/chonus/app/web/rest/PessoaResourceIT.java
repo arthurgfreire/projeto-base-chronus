@@ -2,9 +2,7 @@ package com.chonus.app.web.rest;
 
 import com.chonus.app.ProjetoBaseChronusApp;
 import com.chonus.app.domain.Pessoa;
-import com.chonus.app.domain.Pais;
-import com.chonus.app.domain.Uf;
-import com.chonus.app.domain.Cidade;
+import com.chonus.app.domain.Endereco;
 import com.chonus.app.domain.Raca;
 import com.chonus.app.repository.PessoaRepository;
 import com.chonus.app.service.PessoaService;
@@ -21,6 +19,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.Base64Utils;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -85,6 +85,9 @@ public class PessoaResourceIT {
     private static final EstadoCivil DEFAULT_ESTADO_CIVIL = EstadoCivil.CASADO;
     private static final EstadoCivil UPDATED_ESTADO_CIVIL = EstadoCivil.SOLTEIRO;
 
+    private static final LocalDate DEFAULT_DATA_EXPIRACAO = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATA_EXPIRACAO = LocalDate.now(ZoneId.systemDefault());
+
     @Autowired
     private PessoaRepository pessoaRepository;
 
@@ -123,21 +126,12 @@ public class PessoaResourceIT {
         pessoa.setQuantFilhos(DEFAULT_QUANT_FILHOS);
         pessoa.setGenero(DEFAULT_GENERO);
         pessoa.setEstadoCivil(DEFAULT_ESTADO_CIVIL);
+        pessoa.setDataExpiracao(DEFAULT_DATA_EXPIRACAO);
         // Add required entity
-        Pais Pais;
-        Pais = PaisResourceIT.createEntity();
-        Pais.setId("fixed-id-for-tests");
-        pessoa.setPais(Pais);
-        // Add required entity
-        Uf Uf;
-        Uf = UfResourceIT.createEntity();
-        Uf.setId("fixed-id-for-tests");
-        pessoa.setUf(Uf);
-        // Add required entity
-        Cidade Cidade;
-        Cidade = CidadeResourceIT.createEntity();
-        Cidade.setId("fixed-id-for-tests");
-        pessoa.setCidade(Cidade);
+        Endereco Endereco;
+        Endereco = EnderecoResourceIT.createEntity();
+        Endereco.setId("fixed-id-for-tests");
+        pessoa.setEndereco(Endereco);
         // Add required entity
         Raca Raca;
         Raca = RacaResourceIT.createEntity();
@@ -169,21 +163,12 @@ public class PessoaResourceIT {
         pessoa.setQuantFilhos(UPDATED_QUANT_FILHOS);
         pessoa.setGenero(UPDATED_GENERO);
         pessoa.setEstadoCivil(UPDATED_ESTADO_CIVIL);
+        pessoa.setDataExpiracao(UPDATED_DATA_EXPIRACAO);
         // Add required entity
-        Pais Pais;
-        Pais = PaisResourceIT.createUpdatedEntity();
-        Pais.setId("fixed-id-for-tests");
-        pessoa.setPais(Pais);
-        // Add required entity
-        Uf Uf;
-        Uf = UfResourceIT.createUpdatedEntity();
-        Uf.setId("fixed-id-for-tests");
-        pessoa.setUf(Uf);
-        // Add required entity
-        Cidade Cidade;
-        Cidade = CidadeResourceIT.createUpdatedEntity();
-        Cidade.setId("fixed-id-for-tests");
-        pessoa.setCidade(Cidade);
+        Endereco Endereco;
+        Endereco = EnderecoResourceIT.createUpdatedEntity();
+        Endereco.setId("fixed-id-for-tests");
+        pessoa.setEndereco(Endereco);
         // Add required entity
         Raca Raca;
         Raca = RacaResourceIT.createUpdatedEntity();
@@ -228,6 +213,7 @@ public class PessoaResourceIT {
         assertThat(testPessoa.getQuantFilhos()).isEqualTo(DEFAULT_QUANT_FILHOS);
         assertThat(testPessoa.getGenero()).isEqualTo(DEFAULT_GENERO);
         assertThat(testPessoa.getEstadoCivil()).isEqualTo(DEFAULT_ESTADO_CIVIL);
+        assertThat(testPessoa.getDataExpiracao()).isEqualTo(DEFAULT_DATA_EXPIRACAO);
     }
 
     @Test
@@ -389,7 +375,8 @@ public class PessoaResourceIT {
             .andExpect(jsonPath("$.[*].temFilhos").value(hasItem(DEFAULT_TEM_FILHOS.booleanValue())))
             .andExpect(jsonPath("$.[*].quantFilhos").value(hasItem(DEFAULT_QUANT_FILHOS.intValue())))
             .andExpect(jsonPath("$.[*].genero").value(hasItem(DEFAULT_GENERO.toString())))
-            .andExpect(jsonPath("$.[*].estadoCivil").value(hasItem(DEFAULT_ESTADO_CIVIL.toString())));
+            .andExpect(jsonPath("$.[*].estadoCivil").value(hasItem(DEFAULT_ESTADO_CIVIL.toString())))
+            .andExpect(jsonPath("$.[*].dataExpiracao").value(hasItem(DEFAULT_DATA_EXPIRACAO.toString())));
     }
     
     @Test
@@ -417,7 +404,8 @@ public class PessoaResourceIT {
             .andExpect(jsonPath("$.temFilhos").value(DEFAULT_TEM_FILHOS.booleanValue()))
             .andExpect(jsonPath("$.quantFilhos").value(DEFAULT_QUANT_FILHOS.intValue()))
             .andExpect(jsonPath("$.genero").value(DEFAULT_GENERO.toString()))
-            .andExpect(jsonPath("$.estadoCivil").value(DEFAULT_ESTADO_CIVIL.toString()));
+            .andExpect(jsonPath("$.estadoCivil").value(DEFAULT_ESTADO_CIVIL.toString()))
+            .andExpect(jsonPath("$.dataExpiracao").value(DEFAULT_DATA_EXPIRACAO.toString()));
     }
     @Test
     public void getNonExistingPessoa() throws Exception {
@@ -451,6 +439,7 @@ public class PessoaResourceIT {
         updatedPessoa.setQuantFilhos(UPDATED_QUANT_FILHOS);
         updatedPessoa.setGenero(UPDATED_GENERO);
         updatedPessoa.setEstadoCivil(UPDATED_ESTADO_CIVIL);
+        updatedPessoa.setDataExpiracao(UPDATED_DATA_EXPIRACAO);
         PessoaDTO pessoaDTO = pessoaMapper.toDto(updatedPessoa);
 
         restPessoaMockMvc.perform(put("/api/pessoas")
@@ -478,6 +467,7 @@ public class PessoaResourceIT {
         assertThat(testPessoa.getQuantFilhos()).isEqualTo(UPDATED_QUANT_FILHOS);
         assertThat(testPessoa.getGenero()).isEqualTo(UPDATED_GENERO);
         assertThat(testPessoa.getEstadoCivil()).isEqualTo(UPDATED_ESTADO_CIVIL);
+        assertThat(testPessoa.getDataExpiracao()).isEqualTo(UPDATED_DATA_EXPIRACAO);
     }
 
     @Test
